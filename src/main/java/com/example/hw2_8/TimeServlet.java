@@ -28,13 +28,12 @@ public class TimeServlet extends HttpServlet {
 
         String timezoneVar = request.getParameter("timezone");
 
-        if( timezoneVar != null && !timezoneVar.equals("UTC")){
-            //ZoneId timezoneId = ZoneId.of(timezoneVar);
-            //Set<String> timezoneIds = Set.of(TimeZone.getAvailableIDs());
-
-            //if( Set.of(TimeZone.getAvailableIDs()).contains(ZoneId.of(timezoneVar)) ){
-            //String timezoneName = String.valueOf(TimeZone.getTimeZone(timezoneVar));}
-
+        if( timezoneVar == null || timezoneVar.equals("UTC")){
+            message = ZonedDateTime
+                    .now( ZoneId.of( "UTC" ) )
+                    .format( DateTimeFormatter.ofPattern( "uuuu-MM-dd HH:mm:ss z" ) );
+            timezoneVar = "UTC";
+        } else {
             message = ZonedDateTime
                     .now( ZoneId.of( timezoneVar.replace(' ','+') ) )
                     .format( DateTimeFormatter.ofPattern( "uuuu-MM-dd HH:mm:ss z" ) );
