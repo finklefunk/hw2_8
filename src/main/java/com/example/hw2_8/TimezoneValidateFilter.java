@@ -25,7 +25,7 @@ public class TimezoneValidateFilter implements Filter {
             ((HttpServletResponse)servletResponse).setStatus(400);
 
             servletResponse.setContentType("text/html");
-            servletResponse.getWriter().write("{\"Invalid timezone\"}");
+            servletResponse.getWriter().write("Invalid timezone");
             servletResponse.getWriter().close();
 
         }
